@@ -1,19 +1,49 @@
-body{
+body {
     background-color: #9b1616;
+    font-family: 'Libre Franklin', sans-serif;
+    letter-spacing: 1px;
+    color: aliceblue;
+    padding-left: 15%;
 }
 
 h1 {
-    font-family: 'Open Sans';
-    font-weight: 600;
     color: rgb(255, 250, 250);
     text-transform: uppercase;
-    padding-left: 2em;
+    padding-left: 1em;
 }
 
 a {
+    color: aliceblue;
+    text-decoration: none;
+}
+
+a:visited {
+    color: aliceblue;
     text-decoration: none;
 }
 
 a:hover {
     color: #9b1616;
+    text-decoration-style: wavy;
+    text-decoration-color: aliceblue;
+    text-decoration-line: line-through;
+    font-style: normal;
+}
+
+h2 {
+    margin: 5px;
+    font-size: 1.5em;
+}
+
+.performed {
+    letter-spacing: 0px;
+}
+
+div {
+    padding: 10px;
+}
+
+p {
+    margin: 1px;
+    font-size: 0.8em;
 }
