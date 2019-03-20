@@ -1,6 +1,6 @@
 html,
 body {
-    margin: 0;
+    /* margin: 0; */
     height: 100%;
 }
 
@@ -10,7 +10,7 @@ body {
     letter-spacing: 1px;
     color: rgb(0, 0, 0);
     /* margin: auto; */
-    /* margin-top: 10%; */
+    top: 20px;
     width: 100%;
     margin: auto;
     display: table;
@@ -106,7 +106,11 @@ a:hover #logo {
 body>h3 {
     display: table-cell;
     vertical-align: middle;
-    text-align: center;
+    /* text-align: center; */
+}
+
+div {
+    margin-bottom: 1%;
 }
 
 .square {
@@ -120,4 +124,51 @@ body>h3 {
 
 .text {
     margin-left: 10px;
+    padding-bottom: 2%;
+}
+
+div.work {
+    margin-top: 5px;
+    margin-bottom: 2-px;
+    padding-left: 3%;
+
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    font-weight: 300;
+}
+
+.performed {
+    font-size: 0.6em;
+}
+
+.instr {
+    font-size: 0.8em;
+}
+
+h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+#top {
+    padding-top: 5%;
+}
+
+#expectation {
+    font-size: 0.95em;
+}
+
+.socials {
+    color: #ebb1b1;
+    font-size: 30px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    margin-bottom: 0;
 }

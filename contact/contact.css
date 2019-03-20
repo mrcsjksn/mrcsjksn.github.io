@@ -108,6 +108,14 @@ body>h3 {
     text-align: center;
 }
 
+body>div>span {
+    width: 60%;
+    display: table-cell;
+    vertical-align: middle;
+    /* text-align: center; */
+    font-size: 0.8em;
+}
+
 .square {
     height: 100px;
     width: 100px;
@@ -115,4 +123,13 @@ body>h3 {
     position: fixed;
     right: 30px;
     top: 30px;
+}
+
+.socials {
+    font-size: 30px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    color: #d4a0a0;
+    margin-bottom: 0;
 }
