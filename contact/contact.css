@@ -14,7 +14,6 @@ body {
     width: 100%;
     margin: auto;
     display: table;
-    padding-left: 10%;
 }
 
 #test {
@@ -73,24 +72,9 @@ body {
     }
 }
 
-h1 {
-    color: rgb(0, 0, 0);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding-left: 0em;
-    padding-top: 0px;
-    margin-bottom: 0%;
-    font-weight: 700;
-}
-
-h2 {
-    margin: 5px;
-    font-size: 1em;
-}
-
 h3 {
     /* margin-top: 0%; */
-    padding-right: 10px;
+    /* padding-right: 10px; */
     display: inline;
     font-size: 1.25em;
 }
@@ -118,55 +102,17 @@ a:hover #logo {
     color: rgb(0, 0, 0);
 }
 
-#expectation {
-    margin: 5px;
-    font-size: 0.8em;
-}
-
-.performed {
-    letter-spacing: 0px;
-}
-
-/* div {
-    /* padding: 10px; */
-/* padding-left: 5%; */
-/* display: inline; */
-/* } */
-
-*/ .header {
-    /* margin: px; */
-    font-size: 1em;
-    padding: 0px;
-    padding-left: 5px;
-    margin: 0%;
-}
-
-li {
-    list-style-type: none;
-}
-
-p {
-    margin: 0px;
-    font-size: 0.6em;
-    padding-left: 5px;
-    font-weight: 200;
+body>h3 {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .square {
     height: 100px;
     width: 100px;
-    background-color: #660d0d;
+    background-color: #ebb1b1;
     position: fixed;
     right: 30px;
     top: 30px;
-}
-
-.container {
-    width: 80%;
-}
-
-body>div {
-    display: table-cell;
-    vertical-align: middle;
-    /* text-align: center; */
 }
