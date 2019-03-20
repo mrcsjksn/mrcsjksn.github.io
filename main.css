@@ -14,7 +14,7 @@ body {
     width: 100%;
     margin: auto;
     display: table;
-    padding-left: 10%;
+    /* padding-left: 10%; */
 }
 
 #test {
@@ -133,6 +133,10 @@ a:hover #logo {
 /* display: inline; */
 /* } */
 
+ul {
+    padding-left: 30px;
+}
+
 */ .header {
     /* margin: px; */
     font-size: 1em;
@@ -155,7 +159,7 @@ p {
 .square {
     height: 100px;
     width: 100px;
-    background-color: #660d0d;
+    background-color: #ebb1b1;
     position: fixed;
     right: 30px;
     top: 30px;
