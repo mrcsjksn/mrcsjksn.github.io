@@ -178,6 +178,10 @@ p {
     margin-bottom: 0;
 }
 
+.socials:hover {
+    color: #f5d1d1;
+}
+
 body>div {
     display: table-cell;
     vertical-align: middle;
