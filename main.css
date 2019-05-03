@@ -5,10 +5,10 @@ body {
 }
 
 body {
-    background-color: #ffffff;
+    background-color: #ff7b00;
     font-family: 'Libre Franklin', sans-serif;
     letter-spacing: 1px;
-    color: rgb(182, 182, 182);
+    color: rgb(255, 255, 255);
     /* margin: auto; */
     /* margin-top: 10%; */
     width: 100%;
@@ -74,7 +74,7 @@ body {
 }
 
 h1 {
-    color: rgb(143, 143, 143);
+    color: rgb(255, 255, 255);
     text-transform: uppercase;
     letter-spacing: 1px;
     padding-left: 0em;
@@ -96,18 +96,18 @@ h3 {
 }
 
 a {
-    color: rgb(182, 182, 182);
+    color: rgb(255, 255, 255);
     text-decoration: none;
     /* padding: 3px; */
 }
 
 a:visited {
-    color: rgb(182, 182, 182);
+    color: rgb(255, 255, 255);
     text-decoration: none;
 }
 
 a:hover {
-    color: rgb(182, 182, 182);
+    color: rgb(255, 255, 255);
     text-decoration-style: wavy;
     text-decoration-color: rgb(0, 0, 0);
     text-decoration-line: line-through;
@@ -115,7 +115,7 @@ a:hover {
 }
 
 a:hover #logo {
-    color: rgb(182, 182, 182);
+    color: rgb(255, 255, 255);
 }
 
 #expectation {
@@ -159,7 +159,7 @@ p {
 .square {
     height: 100px;
     width: 100px;
-    background-color: rgb(221, 221, 221);
+    background-color: #ec7200;
     position: fixed;
     right: 30px;
     top: 30px;

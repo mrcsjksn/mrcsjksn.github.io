@@ -104,7 +104,7 @@ a:hover #logo {
 .square {
   height: 100px;
   width: 100px;
-  background-color: rgb(221, 221, 221);
+  background-color: #ec7200;
   position: fixed;
   right: 30px;
   top: 30px;
@@ -115,6 +115,6 @@ a:hover #logo {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  color: rgb(182, 182, 182);
+  color: #ec7200;
   margin-bottom: 0;
 }

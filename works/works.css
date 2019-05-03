@@ -116,7 +116,7 @@ div {
 .square {
     height: 100px;
     width: 100px;
-    background-color: rgb(221, 221, 221);
+    background-color: #ec7200;
     position: fixed;
     right: 30px;
     top: 30px;
@@ -166,7 +166,7 @@ h1 {
 }
 
 .socials {
-    color: rgb(182, 182, 182);
+    color: #ec7200;
     font-size: 30px;
     position: fixed;
     bottom: 30px;
