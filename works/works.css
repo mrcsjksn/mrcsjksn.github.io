@@ -5,10 +5,10 @@ body {
 }
 
 body {
-    background-color: #ffffff;
+    background-color: #ff7b00;
     font-family: 'Libre Franklin', sans-serif;
     letter-spacing: 1px;
-    color: rgb(182, 182, 182);
+    color: rgb(255, 255, 255);
     /* margin: auto; */
     top: 20px;
     width: 100%;
@@ -81,26 +81,26 @@ h3 {
 }
 
 a {
-    color: rgb(182, 182, 182);
+    color: rgb(255, 255, 255);
     text-decoration: none;
     /* padding: 3px; */
 }
 
 a:visited {
-    color: rgb(182, 182, 182);
+    color: rgb(255, 255, 255);
     text-decoration: none;
 }
 
 a:hover {
-    color: #ffffff;
+    color: #ff7b00;
     text-decoration-style: wavy;
-    text-decoration-color: rgb(182, 182, 182);
+    text-decoration-color: rgb(255, 255, 255);
     text-decoration-line: line-through;
     font-style: normal;
 }
 
 a:hover #logo {
-    color: rgb(182, 182, 182);
+    color: rgb(255, 255, 255);
 }
 
 body>h3 {
@@ -154,7 +154,7 @@ p {
 h1 {
     font-size: 1.5em;
     font-weight: 700;
-    color: rgb(143, 143, 143);
+    color: rgb(255, 255, 255);
 }
 
 #top {

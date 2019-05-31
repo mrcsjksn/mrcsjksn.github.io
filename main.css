@@ -107,9 +107,9 @@ a:visited {
 }
 
 a:hover {
-    color: rgb(255, 255, 255);
+    color: #ff7b00;
     text-decoration-style: wavy;
-    text-decoration-color: rgb(0, 0, 0);
+    text-decoration-color: rgb(255, 255, 255);
     text-decoration-line: line-through;
     font-style: normal;
 }

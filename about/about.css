@@ -5,11 +5,11 @@ body {
 }
 
 body {
-    background-color: #ffffff;
+    background-color: #ff7b00;
     font-family: 'Libre Franklin', sans-serif;
     font-size: 0.8em;
     letter-spacing: 0px;
-    color: rgb(182, 182, 182);
+    color: rgb(255, 255, 255);
     width: 60%;
     margin: 20px auto;
     padding: 0 20px 16px 20px;
@@ -79,32 +79,32 @@ body {
 }
 
 a {
-    color: rgb(182, 182, 182);
+    color: rgb(255, 255, 255);
     text-decoration: none;
     /* padding: 3px; */
 }
 
 a:visited {
-    color: rgb(182, 182, 182);
+    color: rrgb(255, 255, 255);
     text-decoration: none;
 }
 
 a:hover {
     color: #ffffff;
     text-decoration-style: wavy;
-    text-decoration-color: rgb(182, 182, 182);
+    text-decoration-color: rgb(255, 255, 255);
     text-decoration-line: line-through;
     font-style: normal;
 }
 
 a:hover #logo {
-    color: rgb(182, 182, 182);
+    color: rgb(255, 255, 255);
 }
 
 .square {
     height: 100px;
     width: 100px;
-    background-color: rgb(221, 221, 221);
+    background-color: #ec7200;
     position: fixed;
     right: 30px;
     top: 30px;
