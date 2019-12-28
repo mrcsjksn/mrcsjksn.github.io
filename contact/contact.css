@@ -119,7 +119,7 @@ body>div>span {
 .square {
     height: 100px;
     width: 100px;
-    background-color: #ec7200;
+    background-color: #d16602;
     position: fixed;
     right: 30px;
     top: 30px;
@@ -130,7 +130,7 @@ body>div>span {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    color: rgb(255, 255, 255);
+    color: #d16602;
     margin-bottom: 0;
 }
 
