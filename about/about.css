@@ -11,8 +11,8 @@ body {
     letter-spacing: 0px;
     color: rgb(255, 255, 255);
     width: 60%;
-    margin: 20px auto;
-    padding: 0 20px 16px 20px;
+    margin: auto;
+    padding: 0 0px 0px 0px;
     display: table;
     text-align: justify;
 }
