@@ -18,7 +18,7 @@ var t = 0;
 function setup() {
   createCanvas(displayWidth, displayHeight);
   background(0);
-  to = color(255, 204, 204);
+  to = color(255, 232, 232);
   from = color(0, 0, 0);
 
   osc = new p5.Oscillator();
