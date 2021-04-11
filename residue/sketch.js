@@ -24,8 +24,8 @@ function setup() {
   osc = new p5.Oscillator();
   osc2 = new p5.Oscillator();
 
-  freq1 = 800 + random(10);
-  freq2 = 800 + random(10);
+  freq1 = 300 + random(10);
+  freq2 = 300 + random(10);
 
   env = new p5.Envelope();
   env.setADSR(0.001, 0.5, 0.1, 0.5);
@@ -52,10 +52,10 @@ function mouseClicked() {
   if (firstOpened === true) {
     firstOpened = false;
     toggleSound();
-    freq1 = 800 + random(10);
-    freq2 = 800 + random(10);
+    freq1 = 300 + random(10);
+    freq2 = 300 + random(10);
   } else {
-    rand = 400 + random(800);
+    rand = 400 + random(300);
     phase = map(4 + random(10), 4, 14, 0.03, 0.005);
     console.log(phase);
   }
