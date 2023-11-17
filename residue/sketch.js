@@ -21,6 +21,10 @@ let midiVal, freq;
 
 var t = 0;
 
+var noSleep = new NoSleep(); // noSleep function
+var wakeLockEnabled = false;
+      var toggleEl = document.querySelector("#toggle");
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
@@ -50,6 +54,19 @@ function draw() {
     osc2.amp(0.1);
   }
   t += phase;
+  toggleEl.addEventListener('click', function() {
+    if (!wakeLockEnabled) {
+      noSleep.enable(); // keep the screen on!
+      wakeLockEnabled = true;
+      toggleEl.value = "Wake Lock is enabled";
+      document.body.style.backgroundColor = "green";
+    } else {
+      noSleep.disable(); // let the screen turn off.
+      wakeLockEnabled = false;
+      toggleEl.value = "Wake Lock is disabled";
+      document.body.style.backgroundColor = "";
+    }
+  }, false);
 }
 
 function mouseClicked() {
