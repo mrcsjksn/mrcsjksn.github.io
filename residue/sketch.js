@@ -6,7 +6,7 @@ var osc2;
 
 var freq1, freq2;
 var rand = 400;
-var base = 300; 
+var base = 300;
 let phase;
 let shift = 5; //change this to find register
 
@@ -23,7 +23,7 @@ var t = 0;
 
 var noSleep = new NoSleep(); // noSleep function
 var wakeLockEnabled = false;
-      var toggleEl = document.querySelector("#toggle");
+var toggleEl = document.querySelector("#toggle");
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -34,8 +34,8 @@ function setup() {
   osc = new p5.Oscillator();
   osc2 = new p5.Oscillator();
 
-  freq1 = midiToFreq(shift+midiNotes[0]);
-  freq2 = midiToFreq(shift+midiNotes[0]-12);
+  freq1 = midiToFreq(shift + midiNotes[0]);
+  freq2 = midiToFreq(shift + midiNotes[0] - 12);
 
   env = new p5.Envelope();
   env.setADSR(0.01, 0.5, 0.1, 0.5);
@@ -63,12 +63,12 @@ function draw() {
   if (firstOpened === false) {
     osc.freq(freq1);
     osc.amp(0.3);
-    osc2.freq((freq2-3)+random(6));
+    osc2.freq((freq2 - 3) + random(6));
     osc2.amp(0.1);
   }
   t += phase;
   //noSleep
-  
+
   // end noSleep
 }
 
@@ -76,25 +76,26 @@ function mouseClicked() {
   if (firstOpened === true) {
     firstOpened = false;
     toggleSound();
-    freq1 = midiToFreq(midiNotes[0]+shift);
-    freq2 = midiToFreq(midiNotes[0]-12+shift);
+    freq1 = midiToFreq(midiNotes[0] + shift);
+    freq2 = midiToFreq(midiNotes[0] - 12 + shift);
     //freq1 = base + random(100);
     console.log(freqToMidi(freq1));
     //freq2 = base + random(10);
     console.log(freqToMidi(freq2));
   } else {
-    midiVal = midiNotes[noteIndex % midiNotes.length]+shift;
+    midiVal = midiNotes[noteIndex % midiNotes.length] + shift;
     base = midiToFreq(midiVal);
     phase = map(4 + random(10), 4, 14, 0.03, 0.005);
     freq1 = base;
-    freq2 = midiToFreq(shift+midiNotes[abs((noteIndex-2)) % (midiNotes.length - round(random(1, 5)))]);
+    freq2 = midiToFreq(shift + midiNotes[abs((noteIndex - 2)) % (midiNotes.length - round(random(1, 5)))]);
     console.log(freqToMidi(freq1), freqToMidi(freq2), noteIndex);
-        noteIndex++;
+    noteIndex++;
 
   }
-  if (millis()>10000){
+  if (millis() > 60000) {
     noSleep.disable(); // let the screen turn off.
-      wakeLockEnabled = false;
+    wakeLockEnabled = false;
+    console.log("WL disabled");
   }
 }
 
@@ -104,12 +105,13 @@ function toggleSound() {
     osc2.start();
     playing = true;
     noSleep.enable(); // keep the screen on!
-      wakeLockEnabled = true;
-    button.html("Stop");
+    wakeLockEnabled = true;
+    console.log("WL enabled");
+    //button.html("Stop");
   } else {
     osc.stop();
     osc2.stop();
     playing = false;
-    button.html("Play");
+    //button.html("Play");
   }
 }
