@@ -46,6 +46,19 @@ function setup() {
 }
 
 function draw() {
+  // toggleEl.addEventListener('click', function() {
+  //   if (!wakeLockEnabled) {
+  //     noSleep.enable(); // keep the screen on!
+  //     wakeLockEnabled = true;
+  //     toggleEl.value = "Wake Lock is enabled"; //sending value
+  //     //document.body.style.backgroundColor = "green"; //changing colour of background
+  //   } else {
+  //     noSleep.disable(); // let the screen turn off.
+  //     wakeLockEnabled = false;
+  //     toggleEl.value = "Wake Lock is disabled";
+  //     //document.body.style.backgroundColor = "";
+  //   }
+  // }, false);
   background(lerpColor(from, to, map(sin(t), -1, 1, 0, 1)));
   if (firstOpened === false) {
     osc.freq(freq1);
@@ -54,19 +67,9 @@ function draw() {
     osc2.amp(0.1);
   }
   t += phase;
-  toggleEl.addEventListener('click', function() {
-    if (!wakeLockEnabled) {
-      noSleep.enable(); // keep the screen on!
-      wakeLockEnabled = true;
-      toggleEl.value = "Wake Lock is enabled";
-      document.body.style.backgroundColor = "green";
-    } else {
-      noSleep.disable(); // let the screen turn off.
-      wakeLockEnabled = false;
-      toggleEl.value = "Wake Lock is disabled";
-      document.body.style.backgroundColor = "";
-    }
-  }, false);
+  //noSleep
+  
+  // end noSleep
 }
 
 function mouseClicked() {
@@ -89,6 +92,10 @@ function mouseClicked() {
         noteIndex++;
 
   }
+  if (millis()>10000){
+    noSleep.disable(); // let the screen turn off.
+      wakeLockEnabled = false;
+  }
 }
 
 function toggleSound() {
@@ -96,7 +103,9 @@ function toggleSound() {
     osc.start();
     osc2.start();
     playing = true;
-    // button.html("Stop");
+    noSleep.enable(); // keep the screen on!
+      wakeLockEnabled = true;
+    button.html("Stop");
   } else {
     osc.stop();
     osc2.stop();
