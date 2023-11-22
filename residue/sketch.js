@@ -3,8 +3,10 @@ var playing = false;
 
 var osc;
 var osc2;
+var hiosc;
+var hiamp = 0;
 
-var freq1, freq2;
+var freq1, freq2, hifreq;
 var rand = 400;
 var base = 300;
 let phase;
@@ -15,15 +17,19 @@ let col;
 let to;
 let from;
 
+let filter, filterFreq, filterWidth;
+
 let midiNotes = [60, 62, 58, 60, 62, 60, 63, 60, 60, 56, 55, 58, 65, 63, 60, 62, 58, 60, 62, 60, 63, 60, 60, 56, 55, 58, 65, 63];
+let hioscNote = [67, 67, 65, 67, 67, 67, 63, 62, 67, 67, 67]
 let noteIndex = 0;
+let hiNoteIndex = 0;
 let midiVal, freq;
 
 var t = 0;
 
 var noSleep = new NoSleep(); // noSleep function
 var wakeLockEnabled = false;
-var toggleEl = document.querySelector("#toggle");
+// var toggleEl = document.querySelector("#toggle");
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -33,9 +39,17 @@ function setup() {
 
   osc = new p5.Oscillator();
   osc2 = new p5.Oscillator();
+  hiosc = new p5.Oscillator();
+  noise = new p5.Noise();
+  filter = new p5.BandPass();
+
+  noise.disconnect();
+  filter.process(noise);
+
+  noise.amp(0.2);
 
   freq1 = midiToFreq(shift + midiNotes[0]);
-  freq2 = midiToFreq(shift + midiNotes[0] - 12);
+  freq2 = midiToFreq(shift + midiNotes[0]);
 
   env = new p5.Envelope();
   env.setADSR(0.01, 0.5, 0.1, 0.5);
@@ -43,22 +57,10 @@ function setup() {
   // set attackLevel, releaseLevel
   env.setRange(1, 1);
   phase = map(4 + random(10), 4, 14, 0.025, 0.005);
+  hiosc.amp(0);
 }
 
 function draw() {
-  // toggleEl.addEventListener('click', function() {
-  //   if (!wakeLockEnabled) {
-  //     noSleep.enable(); // keep the screen on!
-  //     wakeLockEnabled = true;
-  //     toggleEl.value = "Wake Lock is enabled"; //sending value
-  //     //document.body.style.backgroundColor = "green"; //changing colour of background
-  //   } else {
-  //     noSleep.disable(); // let the screen turn off.
-  //     wakeLockEnabled = false;
-  //     toggleEl.value = "Wake Lock is disabled";
-  //     //document.body.style.backgroundColor = "";
-  //   }
-  // }, false);
   background(lerpColor(from, to, map(sin(t), -1, 1, 0, 1)));
   if (firstOpened === false) {
     osc.freq(freq1);
@@ -66,6 +68,27 @@ function draw() {
     osc2.freq((freq2 - 3) + random(6));
     osc2.amp(0.1);
   }
+  filterFreq = midiToFreq(48 + shift);
+  filterWidth = map(sin(t), -1, 1, 5, 2);
+  filter.set(filterFreq, filterWidth);
+  if (millis() > (2 * 60 * 1000)) {
+    hifreq = midiToFreq(hioscNote[hiNoteIndex % hioscNote.length] + shift + 24);
+    hiosc.freq(hifreq);
+    hiamp = map(sin(t * -1), -1, 1, 0, 0.01);
+    hiosc.amp(hiamp);
+    if (hiamp < 0.001) {
+      hiNoteIndex++;
+      //console.log("trigger");
+    }
+    if (millis() > (4 * 60 * 1000)) {
+      hiosc.stop();
+      osc.amp(0);
+      osc2.amp(0);
+      osc.stop();
+      osc2.stop();
+    }
+  }
+
   t += phase;
   //noSleep
 
@@ -77,7 +100,7 @@ function mouseClicked() {
     firstOpened = false;
     toggleSound();
     freq1 = midiToFreq(midiNotes[0] + shift);
-    freq2 = midiToFreq(midiNotes[0] - 12 + shift);
+    freq2 = midiToFreq(midiNotes[0] + shift);
     //freq1 = base + random(100);
     console.log(freqToMidi(freq1));
     //freq2 = base + random(10);
@@ -85,9 +108,9 @@ function mouseClicked() {
   } else {
     midiVal = midiNotes[noteIndex % midiNotes.length] + shift;
     base = midiToFreq(midiVal);
-    phase = map(4 + random(10), 4, 14, 0.03, 0.005);
+    //phase = map(4 + random(10), 4, 14, 0.025, 0.005);
     freq1 = base;
-    freq2 = midiToFreq(shift + midiNotes[abs((noteIndex - 2)) % (midiNotes.length - round(random(1, 5)))]);
+    freq2 = midiToFreq(shift + midiNotes[abs((noteIndex - 2)) % (midiNotes.length - round(random(2, 8)))]);
     console.log(freqToMidi(freq1), freqToMidi(freq2), noteIndex);
     noteIndex++;
 
@@ -103,6 +126,8 @@ function toggleSound() {
   if (playing === false) {
     osc.start();
     osc2.start();
+    hiosc.start();
+    noise.start();
     playing = true;
     noSleep.enable(); // keep the screen on!
     wakeLockEnabled = true;
