@@ -55,7 +55,7 @@ function setup() {
   freq2 = midiToFreq(shift + midiNotes[0]);
 
   phase = map(4 + random(10), 4, 14, 0.025, 0.005);
-  button = createButton("play");
+  button = createButton('play');
   button.mousePressed(toggleSound);
 }
 
