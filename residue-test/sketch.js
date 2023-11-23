@@ -55,6 +55,8 @@ function setup() {
   freq2 = midiToFreq(shift + midiNotes[0]);
 
   phase = map(4 + random(10), 4, 14, 0.025, 0.005);
+  button = createButton("play");
+  button.mousePressed(toggleSound);
 }
 
 function draw() {
@@ -165,11 +167,11 @@ function toggleSound() {
     hiosc.amp(hioscamp);
     playing = true;
 
-    //button.html("Stop");
+    button.html("Stop");
   } else {
     osc.stop();
     osc2.stop();
     playing = false;
-    //button.html("Play");
+    button.html("Play");
   }
 }
