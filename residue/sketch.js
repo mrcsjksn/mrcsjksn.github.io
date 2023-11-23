@@ -109,7 +109,7 @@ function draw() {
 
     //fade out noise
     if (millis() > (6.5 * 60 * 1000) && ndownramp > 0.01) {
-      ndownramp -= 0.002;
+      ndownramp -= 0.01;
     }
 
     //stop noise post-fadeout
