@@ -89,7 +89,7 @@ function draw() {
     if (millis() > (6 * 60 * 1000)) {
 
       hiamp = 0;
-      downramp -= 0.001;
+      downramp -= 0.006;
       //hiosc.amp(hiamp);
       if (downramp < 0.009) {
         osc.stop();
