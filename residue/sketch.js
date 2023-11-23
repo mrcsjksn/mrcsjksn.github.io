@@ -5,6 +5,15 @@ var osc;
 var osc2;
 var hiosc;
 var hiamp = 0;
+var oscamp = 0.3;
+var osc2amp = 0.1;
+var hioscamp = 0;
+var noiseamp = 0.1;
+
+var downramp = 1;
+var ndownramp = 1;
+var upramp = 0;
+let gramp;
 
 var freq1, freq2, hifreq;
 var rand = 400;
@@ -29,10 +38,11 @@ var t = 0;
 
 var noSleep = new NoSleep(); // noSleep function
 var wakeLockEnabled = false;
-// var toggleEl = document.querySelector("#toggle");
+var toggleEl = document.querySelector("#toggle");
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  //frameRate(40);
   background(0);
   to = color(255, 232, 232);
   from = color(0, 0, 0);
@@ -43,65 +53,91 @@ function setup() {
   noise = new p5.Noise();
   filter = new p5.BandPass();
 
-  noise.disconnect();
-  filter.process(noise);
-
-  noise.amp(0.2);
-
   freq1 = midiToFreq(shift + midiNotes[0]);
   freq2 = midiToFreq(shift + midiNotes[0]);
 
-  env = new p5.Envelope();
-  env.setADSR(0.01, 0.5, 0.1, 0.5);
-
-  // set attackLevel, releaseLevel
-  env.setRange(1, 1);
   phase = map(4 + random(10), 4, 14, 0.025, 0.005);
-  hiosc.amp(0);
 }
 
 function draw() {
   background(lerpColor(from, to, map(sin(t), -1, 1, 0, 1)));
   if (firstOpened === false) {
     osc.freq(freq1);
-    osc.amp(0.3);
+    osc.amp(oscamp);
     osc2.freq((freq2 - 3) + random(6));
-    osc2.amp(0.1);
+    osc2.amp(osc2amp);
+    noise.amp(noiseamp);
   }
+
   filterFreq = midiToFreq(48 + shift);
   filterWidth = map(sin(t), -1, 1, 5, 2);
   filter.set(filterFreq, filterWidth);
-  if (millis() > (2 * 60 * 1000)) {
+
+  //introduce high pitched sound
+  if (millis() > (2.5 * 60 * 1000)) {
+    hioscamp = 0.01;
     hifreq = midiToFreq(hioscNote[hiNoteIndex % hioscNote.length] + shift + 24);
     hiosc.freq(hifreq);
-    hiamp = map(sin(t * -1), -1, 1, 0, 0.01);
-    hiosc.amp(hiamp);
+    hiamp = hioscamp * map(sin(t * -1), -1, 1, 0, 1);
+
     if (hiamp < 0.001) {
       hiNoteIndex++;
       //console.log("trigger");
     }
-    if (millis() > (4 * 60 * 1000)) {
+
+    // begin fadeout
+    if (millis() > (6 * 60 * 1000)) {
+
+      hiamp = 0;
+      downramp -= 0.001;
+      //hiosc.amp(hiamp);
+      if (downramp < 0.009) {
+        osc.stop();
+        osc2.stop();
+        hiosc.stop();
+      }
+
+    }
+
+    //stop sound post-fadeout
+    if (millis() > (5 * 60 * 1000) && downramp <= 0.01) {
       hiosc.stop();
-      osc.amp(0);
-      osc2.amp(0);
       osc.stop();
       osc2.stop();
+      //downramp = 1;
+    }
+
+    //fade out noise
+    if (millis() > (6.5 * 60 * 1000) && ndownramp > 0.01) {
+      ndownramp -= 0.002;
+    }
+
+    //stop noise post-fadeout
+    if (millis() > (6.5 * 60 * 1000) && ndownramp <= 0.01) {
+      noise.stop();
     }
   }
-
+  hiosc.amp(hiamp * downramp);
+  osc.amp(oscamp * downramp);
+  osc2.amp(osc2amp * downramp);
+  noise.amp(noiseamp * ndownramp);
   t += phase;
   //noSleep
 
   // end noSleep
+  // text("Downramp: " + downramp, 50, 50);
+  // text("Noise Downramp: " + ndownramp, 50, 70);
+  // text(millis(), 50, 90);
 }
 
 function mouseClicked() {
   if (firstOpened === true) {
     firstOpened = false;
-    toggleSound();
+
     freq1 = midiToFreq(midiNotes[0] + shift);
     freq2 = midiToFreq(midiNotes[0] + shift);
     //freq1 = base + random(100);
+    toggleSound();
     console.log(freqToMidi(freq1));
     //freq2 = base + random(10);
     console.log(freqToMidi(freq2));
@@ -113,9 +149,10 @@ function mouseClicked() {
     freq2 = midiToFreq(shift + midiNotes[abs((noteIndex - 2)) % (midiNotes.length - round(random(2, 8)))]);
     console.log(freqToMidi(freq1), freqToMidi(freq2), noteIndex);
     noteIndex++;
+    //console.log(;
 
   }
-  if (millis() > 60000) {
+  if (millis() > 6 * 60 * 1000) {
     noSleep.disable(); // let the screen turn off.
     wakeLockEnabled = false;
     console.log("WL disabled");
@@ -128,6 +165,10 @@ function toggleSound() {
     osc2.start();
     hiosc.start();
     noise.start();
+    noise.disconnect();
+    filter.process(noise);
+    noise.amp(noiseamp);
+    hiosc.amp(hioscamp);
     playing = true;
     noSleep.enable(); // keep the screen on!
     wakeLockEnabled = true;
