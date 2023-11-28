@@ -16,6 +16,12 @@ body {
     display: table;
 }
 
+div.klaviyo-form-Scz57P {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
 #test {
     animation: fadein 3s;
     -moz-animation: fadein 3s;
