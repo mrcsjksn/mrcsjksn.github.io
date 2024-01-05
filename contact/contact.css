@@ -129,6 +129,7 @@ body>div>span {
     position: fixed;
     right: 30px;
     top: 30px;
+    z-index: -1;
 }
 
 .socials {
